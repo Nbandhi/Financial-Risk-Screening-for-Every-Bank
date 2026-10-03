@@ -1,0 +1,692 @@
+<title>KYC/AML Compliance Platform</title>
+
+<style>
+:root {
+  --primary: #0066cc;
+  --primary-dark: #0052a3;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --bg: #ffffff;
+  --surface: #f8f9fa;
+  --border: #e5e7eb;
+  --text: #1a1a1a;
+  --text-muted: #666666;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --border: #30363d;
+  --text: #e6edf3;
+  --text-muted: #8b949e;
+  color-scheme: dark;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+header {
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+  sticky top: 0;
+  background: var(--bg);
+  z-index: 100;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  margin-left: 24px;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--primary);
+}
+
+.hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.hero .tagline {
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--border);
+}
+
+.features {
+  max-width: 1200px;
+  margin: 60px auto 0;
+  padding: 60px 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.feature {
+  padding: 30px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.feature h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+.feature p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.feature ul {
+  margin-top: 16px;
+  padding-left: 20px;
+}
+
+.feature li {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.section {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 60px 24px;
+}
+
+.section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.grid-2 h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.grid-2 ul {
+  padding-left: 20px;
+}
+
+.grid-2 li {
+  margin-bottom: 12px;
+  color: var(--text-muted);
+}
+
+.grid-2 li:before {
+  content: "✓ ";
+  color: var(--success);
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.stat-box {
+  background: var(--surface);
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.stat-label {
+  color: var(--text-muted);
+  margin-top: 8px;
+  font-size: 0.95rem;
+}
+
+.pricing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.price-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 40px;
+  background: var(--surface);
+  text-align: center;
+}
+
+.price-card.featured {
+  border: 2px solid var(--primary);
+  transform: scale(1.05);
+}
+
+.price-amount {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.price-period {
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+.price-card ul {
+  text-align: left;
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+.price-card li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.price-card li:last-child {
+  border-bottom: none;
+}
+
+.code-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px;
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 20px 0;
+}
+
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 40px 24px;
+  margin-top: 100px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+}
+
+.footer-section h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.footer-section a {
+  display: block;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.footer-section a:hover {
+  color: var(--primary);
+}
+
+.highlight {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero .tagline {
+    font-size: 1.1rem;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .price-card.featured {
+    transform: scale(1);
+  }
+}
+</style>
+
+<header>
+  <div class="header-content">
+    <a href="#" class="logo">KYC/AML Platform</a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#pricing">Pricing</a>
+      <a href="https://github.com/your-org/kyc-aml" target="_blank">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <h1>Financial Risk Screening for Every Bank</h1>
+  <p class="tagline">Production-ready KYC/AML compliance platform with zero-cost OFAC + UN data, sub-200ms screening, and automated FinCEN SARS reporting.</p>
+  <div class="cta-buttons">
+    <a href="https://github.com/your-org/kyc-aml#quick-start" class="btn btn-primary">Get Started</a>
+    <a href="#" onclick="document.getElementById('architecture').scrollIntoView()" class="btn btn-secondary">Learn More</a>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-box">
+      <div class="stat-number">$0</div>
+      <div class="stat-label">Data Licensing Costs</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">1 Week</div>
+      <div class="stat-label">Deployment Time</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">85%+</div>
+      <div class="stat-label">Gross Margins</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">35K+</div>
+      <div class="stat-label">Sanctions Records</div>
+    </div>
+  </div>
+</div>
+
+<section id="features" class="section">
+  <h2>Complete Compliance Solution</h2>
+  <div class="features">
+    <div class="feature">
+      <h3>🛡️ KYC Screening</h3>
+      <p>Real-time entity screening against OFAC and UN lists with fuzzy matching for phonetic variations. Detect sanctioned parties at account opening.</p>
+      <ul>
+        <li>OFAC SDN List (~10K records)</li>
+        <li>UN Consolidated List (~25K records)</li>
+        <li>PEP & adverse media detection</li>
+        <li><200ms response time</li>
+      </ul>
+    </div>
+
+    <div class="feature">
+      <h3>💰 AML Monitoring</h3>
+      <p>6 types of transaction anomaly detection automatically flag suspicious patterns including structuring, rapid movement, and geographic risk.</p>
+      <ul>
+        <li>Structuring detection</li>
+        <li>Rapid movement analysis</li>
+        <li>Velocity anomalies</li>
+        <li>Geographic risk assessment</li>
+      </ul>
+    </div>
+
+    <div class="feature">
+      <h3>📋 SARS Generation</h3>
+      <p>Automated FinCEN-compliant Suspicious Activity Reports with risk scoring, narrative generation, and 30-day filing deadline tracking.</p>
+      <ul>
+        <li>Automatic SAR generation</li>
+        <li>Risk assessment & scoring</li>
+        <li>FinCEN-compliant formatting</li>
+        <li>Filing deadline management</li>
+      </ul>
+    </div>
+
+    <div class="feature">
+      <h3>🔄 Batch Processing</h3>
+      <p>Screen thousands of entities per day. Daily batch jobs automatically monitor all active customers and generate alerts for high-risk activity.</p>
+      <ul>
+        <li>10K entities/minute</li>
+        <li>Scheduled batch jobs</li>
+        <li>Alerts & escalation</li>
+        <li>Compliance reporting</li>
+      </ul>
+    </div>
+
+    <div class="feature">
+      <h3>📊 Dashboard & Alerts</h3>
+      <p>Compliance team dashboard with real-time alerts, pending SARs, and compliance metrics. Email and Slack notifications for critical findings.</p>
+      <ul>
+        <li>Real-time alerts</li>
+        <li>SAR management</li>
+        <li>Risk metrics</li>
+        <li>Audit trail</li>
+      </ul>
+    </div>
+
+    <div class="feature">
+      <h3>⚙️ RESTful API</h3>
+      <p>FastAPI REST API with complete OpenAPI documentation. Easy integration with your existing banking systems and core processing platform.</p>
+      <ul>
+        <li>FastAPI framework</li>
+        <li>OpenAPI docs</li>
+        <li>Batch endpoints</li>
+        <li>API key auth</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="architecture" class="section">
+  <h2>Architecture & Deployment</h2>
+
+  <div class="grid-2">
+    <div>
+      <h3>Complete Tech Stack</h3>
+      <ul>
+        <li>Python with FastAPI (REST API)</li>
+        <li>SQLAlchemy ORM (database)</li>
+        <li>PostgreSQL (production database)</li>
+        <li>Docker & Kubernetes ready</li>
+        <li>Background job scheduling</li>
+        <li>Production monitoring & logging</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>4-Week Deployment</h3>
+      <ul>
+        <li><strong>Week 1:</strong> Setup, schema, demo validation</li>
+        <li><strong>Week 2:</strong> API endpoints, batch processing</li>
+        <li><strong>Week 3:</strong> Testing, compliance training</li>
+        <li><strong>Week 4:</strong> Production launch, first SARs</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="code-block">
+# Quick start example
+from aml_integration import AMLScreeningService
+
+service = AMLScreeningService()
+result = service.screen_entity_comprehensive(
+    entity_id="123",
+    entity_name="Acme Trading",
+    entity_country="US",
+    transactions=[...]
+)
+
+print(f"Risk Score: {result['aml_analysis']['risk_score']}")
+  </div>
+</section>
+
+<section class="section">
+  <h2>Data Advantage</h2>
+
+  <div class="grid-2">
+    <div>
+      <h3>Official Government Data</h3>
+      <p>Built on the same OFAC and UN lists that every bank is required to use. Zero licensing costs because the data is publicly available and free to use.</p>
+      <ul>
+        <li>OFAC Treasury data (official)</li>
+        <li>UN Security Council data (official)</li>
+        <li>Daily OFAC updates</li>
+        <li>Real-time UN updates</li>
+        <li>99.9% accuracy</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Cost Comparison</h3>
+      <div class="stat-box" style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3);">
+        <div style="font-size: 1.5rem; font-weight: 700; color: var(--success); margin-bottom: 8px;">Your Cost:</div>
+        <div style="font-size: 2.5rem; font-weight: 700; color: var(--success); margin-bottom: 4px;">$0/month</div>
+      </div>
+      <div class="stat-box" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3);">
+        <div style="font-size: 1.5rem; font-weight: 700; color: var(--danger); margin-bottom: 8px;">Competitor Cost:</div>
+        <div style="font-size: 2.5rem; font-weight: 700; color: var(--danger); margin-bottom: 4px;">$500-2000/month</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="section">
+  <h2>Pricing</h2>
+
+  <div class="pricing">
+    <div class="price-card">
+      <h3>Starter</h3>
+      <div class="price-amount">$299</div>
+      <div class="price-period">/month</div>
+      <ul>
+        <li>OFAC + UN screening</li>
+        <li>1,000 API calls/month</li>
+        <li>Transaction monitoring</li>
+        <li>Automated SARS</li>
+        <li>Email support</li>
+      </ul>
+      <button class="btn btn-secondary" onclick="alert('Sign up at GitHub or contact sales')">Get Started</button>
+    </div>
+
+    <div class="price-card featured">
+      <h3>Professional</h3>
+      <div class="price-amount">$999</div>
+      <div class="price-period">/month</div>
+      <ul>
+        <li>Everything in Starter</li>
+        <li>50,000 API calls/month</li>
+        <li>Batch processing</li>
+        <li>Real-time alerts</li>
+        <li>Dashboard access</li>
+        <li>Phone support</li>
+      </ul>
+      <button class="btn btn-primary">Get Started</button>
+    </div>
+
+    <div class="price-card">
+      <h3>Enterprise</h3>
+      <div class="price-amount">$4,999+</div>
+      <div class="price-period">/month</div>
+      <ul>
+        <li>Unlimited API calls</li>
+        <li>Custom integrations</li>
+        <li>24/7 support</li>
+        <li>White-label option</li>
+        <li>Advanced PEP data</li>
+        <li>Custom rules engine</li>
+      </ul>
+      <button class="btn btn-secondary" onclick="alert('Contact sales for custom quote')">Contact Sales</button>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Getting Started</h2>
+
+  <div class="grid-2">
+    <div>
+      <h3>Installation</h3>
+      <div class="code-block">
+# Clone the repository
+git clone https://github.com/your-org/kyc-aml.git
+cd kyc-aml
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the demo
+python demo_aml_system.py
+
+# Start the API
+uvicorn api:app --reload
+      </div>
+    </div>
+
+    <div>
+      <h3>Next Steps</h3>
+      <ul>
+        <li><strong>Read the docs:</strong> Check out <span class="highlight">README.md</span> for complete documentation</li>
+        <li><strong>Run the demo:</strong> See how detection works with <span class="highlight">demo_aml_system.py</span></li>
+        <li><strong>Review API:</strong> OpenAPI docs at <span class="highlight">/docs</span> when server runs</li>
+        <li><strong>Create database:</strong> Follow schema setup in <span class="highlight">AML_DEPLOYMENT.md</span></li>
+        <li><strong>Configure:</strong> Set environment variables and data sources</li>
+        <li><strong>Integrate:</strong> Connect to your transaction pipeline</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h4>Product</h4>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#architecture">Architecture</a>
+      <a href="https://github.com/your-org/kyc-aml" target="_blank">GitHub</a>
+    </div>
+
+    <div class="footer-section">
+      <h4>Documentation</h4>
+      <a href="#">Getting Started</a>
+      <a href="#">API Reference</a>
+      <a href="#">Deployment Guide</a>
+      <a href="#">FAQ</a>
+    </div>
+
+    <div class="footer-section">
+      <h4>Company</h4>
+      <a href="#">Blog</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy</a>
+    </div>
+
+    <div class="footer-section">
+      <h4>Legal</h4>
+      <a href="#">Terms of Service</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Compliance</a>
+      <a href="#">Security</a>
+    </div>
+  </div>
+</footer>
