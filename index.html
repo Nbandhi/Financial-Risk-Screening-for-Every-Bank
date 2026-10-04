@@ -687,10 +687,10 @@ nav .nav-links a:hover {
 
 <nav>
   <div class="logo">KYC/AML Platform</div>
-  <ul class="nav-links">
+  <ul class="nav-links">     
+    <li><a onclick="scrollToSection('demo')">Demo</a></li>
     <li><a href="#features">Features</a></li>
     <li><a href="#architecture">Architecture</a></li>
-    <li><a onclick="scrollToSection('demo')">Demo</a></li>
     <li><a onclick="scrollToSection('timeline')">Timeline</a></li>
     <li><a onclick="scrollToSection('roi')">ROI</a></li>
   </ul>
@@ -1288,31 +1288,21 @@ function runAMLDemo() {
   response.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
+
 function runSARDemo() {
-  // First try to get customer from AML field
-  let customerId = document.getElementById('amlCustomer').value;
-  let customer = Object.values(customers).find(c => c.customerId === customerId);
+  // Get customer from dropdown selector (most reliable source)
+  const selector = document.getElementById('customerSelector');
+  const selectedId = selector.value;
 
-  // If not found, try to get from KYC fields (customer selector)
-  if (!customer) {
-    const name = document.getElementById('kycName').value;
-    const country = document.getElementById('kycCountry').value;
-    if (name && country) {
-      customer = Object.values(customers).find(c => c.name === name && c.country === country);
-    }
-  }
-
-  // If still not found, try to get from dropdown selector
-  if (!customer) {
-    const selector = document.getElementById('customerSelector');
-    const selectedId = selector.value;
-    if (selectedId) {
-      customer = customers[selectedId];
-    }
-  }
-
-  if (!customer) {
+  if (!selectedId) {
     alert('Please select a customer from the dropdown above');
+    return;
+  }
+
+  const customer = customers[selectedId];
+
+  if (!customer) {
+    alert('Customer not found. Please select a valid customer.');
     return;
   }
 
@@ -1321,7 +1311,7 @@ function runSARDemo() {
   const dueDate = new Date(today.setDate(today.getDate() + 30)).toISOString().split('T')[0];
   const sarRefNum = `SAR-2026-10-04-${Math.floor(Math.random()*999).toString().padStart(3, '0')}`;
 
-  const document = document.getElementById('sarDocument');
+  const sarDocElement = document.getElementById('sarDocument');
   const content = document.getElementById('sarContent');
 
   content.innerHTML = `
@@ -1405,10 +1395,10 @@ Digital Signature: Available for filing</div>
 </div>
   `;
 
-  document.classList.add('visible');
-  document.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  sarDocElement.classList.add('visible');
+  sarDocElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
-
+       
 function scrollToSection(id) {
   const element = document.getElementById(id);
   element.scrollIntoView({ behavior: 'smooth' });
