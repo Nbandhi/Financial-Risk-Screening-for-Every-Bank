@@ -687,7 +687,7 @@ nav .nav-links a:hover {
 
 <nav>
   <div class="logo">KYC/AML Platform</div>
-  <ul class="nav-links">     
+  <ul class="nav-links">
     <li><a onclick="scrollToSection('demo')">Demo</a></li>
     <li><a href="#features">Features</a></li>
     <li><a href="#architecture">Architecture</a></li>
@@ -1288,7 +1288,6 @@ function runAMLDemo() {
   response.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-
 function runSARDemo() {
   // Get customer from dropdown selector (most reliable source)
   const selector = document.getElementById('customerSelector');
@@ -1398,7 +1397,7 @@ Digital Signature: Available for filing</div>
   sarDocElement.classList.add('visible');
   sarDocElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
-       
+
 function scrollToSection(id) {
   const element = document.getElementById(id);
   element.scrollIntoView({ behavior: 'smooth' });
